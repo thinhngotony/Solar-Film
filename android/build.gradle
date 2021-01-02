@@ -1,0 +1,41 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        google()
+        jcenter()
+    }
+
+
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:4.1.0'
+//        classpath 'com.google.gms:google-services:4.3.3'
+        classpath 'com.google.gms:google-services:4.3.4'
+//        implementation platform('com.google.firebase:firebase-bom:26.2.0')
+//        implementation 'com.google.firebase:firebase-analytics'
+//        apply plugin: 'com.android.application'
+//
+//        apply plugin: 'com.google.gms.google-services'
+    }
+
+}
+
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+rootProject.buildDir = '../build'
+subprojects {
+    project.buildDir = "${rootProject.buildDir}/${project.name}"
+}
+subprojects {
+    project.evaluationDependsOn(':app')
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
